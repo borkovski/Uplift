@@ -38,6 +38,12 @@ namespace Uplift
                 .AddDefaultTokenProviders().AddDefaultUI();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
@@ -61,6 +67,7 @@ namespace Uplift
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
