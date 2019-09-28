@@ -14,6 +14,7 @@ namespace Uplift.DataAccess.Data.Repository
         public IServiceRepository Service { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public IOrderDetailsRepository OrderDetails { get; private set; }
+        public IUserRepository User { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -23,6 +24,7 @@ namespace Uplift.DataAccess.Data.Repository
             Service = new ServiceRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
             OrderDetails = new OrderDetailsRepository(_db);
+            User = new UserRepository(_db);
         }
 
         public void Dispose()
